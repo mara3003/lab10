@@ -8,34 +8,26 @@
 <body>
     <h1>Database Results</h1>
     <?php
-    // Conectare la baza de date
-    $serverName = "mara2002.database.windows.net";
-    $connectionOptions = array(
-        "Database" => "db",
-        "Uid" => "mara",
-        "PWD" => "Student20023003"
-    );
-    $conn = sqlsrv_connect($serverName, $connectionOptions);
+    try {
+        // Conectare la baza de date folosind PDO
+        $conn = new PDO("sqlsrv:server = tcp:mara2002.database.windows.net,1433; Database = db", "mara", "Student20023003");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Verificare conexiune
-    if ($conn === false) {
-        die(print_r(sqlsrv_errors(), true));
+        // Interogare SELECT
+        $sql = "SELECT * FROM fileinfo";
+        $stmt = $conn->query($sql);
+
+        // Afișare rezultate
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<p>Filename: " . $row['filename'] . "</p>";
+            echo "<p>Blob Store Address: " . $row['blob_store_addr'] . "</p>";
+            echo "<p>Time: " . $row['time'] . "</p>";
+            echo "<p>File Text: " . $row['file_text'] . "</p>";
+        }
+    } catch (PDOException $e) {
+        print("Error connecting to SQL Server.");
+        die(print_r($e));
     }
-
-    // Interogare SELECT
-    $sql = "SELECT * FROM fileinfo";
-    $result = sqlsrv_query($conn, $sql);
-
-    // Afișare rezultate
-    while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-        echo "<p>Filename: " . $row['filename'] . "</p>";
-        echo "<p>Blob Store Address: " . $row['blob_store_addr'] . "</p>";
-        echo "<p>Time: " . $row['time']->format('H:i:s') . "</p>";
-        echo "<p>File Text: " . $row['file_text'] . "</p>";
-    }
-
-    // Închidere conexiune
-    sqlsrv_close($conn);
     ?>
 </body>
 </html>
