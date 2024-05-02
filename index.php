@@ -23,7 +23,7 @@
     }
 
     // Interogare SELECT
-    $sql = "SELECT * FROM nume_tabela";
+    $sql = "SELECT * FROM fileinfo";
     $result = sqlsrv_query($conn, $sql);
 
     // Afișare rezultate
