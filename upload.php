@@ -1,23 +1,22 @@
 <?php
-
+// Conexiunea la baza de date SQL Server folosind PDO
 try {
-    $conn = new PDO("sqlsrv:server = tcp:mara2002.database.windows.net,1433; Database = db", "mara", "Student20023003");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
+    $pdoConn = new PDO("sqlsrv:server = tcp:mara2002.database.windows.net,1433; Database = db", "mara", "Student20023003");
+    $pdoConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
     print("Error connecting to SQL Server.");
     die(print_r($e));
 }
 
-// SQL Server Extension Sample Code:
+// Conexiunea la baza de date SQL Server folosind extensia SQL Server
 $connectionInfo = array("UID" => "mara", "pwd" => "Student20023003", "Database" => "db", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
 $serverName = "tcp:mara2002.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
+$sqlsrvConn = sqlsrv_connect($serverName, $connectionInfo);
 
-
-use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Blob\Models\CreateBlobOptions;
+// Verificați conexiunea
+if ($sqlsrvConn === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
 
 // Includeți biblioteca Azure Storage
 require_once "vendor/autoload.php";
@@ -45,15 +44,18 @@ unlink($filePath);
 $fileName = $_FILES["uploaded_file"]["name"];
 $blobUrl = "https://storagemara2002.blob.core.windows.net/container1/$blobName";
 
-// Inserați informațiile în baza de date
-$sql = "INSERT INTO files (file_name, blob_url) VALUES ('$fileName', '$blobUrl')";
+// Inserați informațiile în baza de date folosind PDO
+$sql = "INSERT INTO files (file_name, blob_url) VALUES (?, ?)";
+$stmt = $pdoConn->prepare($sql);
+$stmt->execute([$fileName, $blobUrl]);
 
-if ($conn->query($sql) === TRUE) {
+if ($stmt) {
     echo "Record inserted successfully.";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: Record insertion failed.";
 }
 
-$conn->close();
-
+// Închideți conexiunile la baza de date
+$pdoConn = null;
+sqlsrv_close($sqlsrvConn);
 ?>
