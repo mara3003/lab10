@@ -16,19 +16,19 @@
     </form>
   <?php
 
-  $serverName = "mara2002.database.windows.net";
-$connectionOptions = array(
-    "Database" => "db",
-    "Uid" => "mara",
-    "PWD" => "Student20023003"
-);
-
-// Realizăm conexiunea la baza de date SQL
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-if ($conn === false) {
-    echo "Eroare la conectarea la baza de date SQL.";
-    die(print_r(sqlsrv_errors(), true));
+try {
+    $conn = new PDO("sqlsrv:server = tcp:mara2002.database.windows.net,1433; Database = db", "mara", "{your_password_here}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "mara", "pwd" => "{your_password_here}", "Database" => "db", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:mara2002.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 
   // Selectăm toate înregistrările din tabela fileinfo
 $sqlSelect = "SELECT * FROM fileinfo";
