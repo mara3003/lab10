@@ -16,7 +16,7 @@
     </form>
   <?php
 
-  $serverName = "nume_server.database.windows.net";
+  $serverName = "mara2002.database.windows.net";
 $connectionOptions = array(
     "Database" => "db",
     "Uid" => "mara",
