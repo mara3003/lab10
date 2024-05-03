@@ -1,4 +1,4 @@
-<?php
+
 // Conexiunea la baza de date SQL Server folosind PDO
 try {
     $pdoConn = new PDO("sqlsrv:server = tcp:mara2002.database.windows.net,1433; Database = db", "mara", "Student20023003");
@@ -58,4 +58,4 @@ if ($stmt) {
 // Închideți conexiunile la baza de date
 $pdoConn = null;
 sqlsrv_close($sqlsrvConn);
-?>
+
