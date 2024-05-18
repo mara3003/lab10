@@ -204,13 +204,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = "Student20023003";
         $database = "database";
 
-        try {
-      $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
-      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-      die("Connection failed: " . $e->getMessage());
-    }
-
+ try {
+    $conn = new PDO("sqlsrv:server = tcp:sqlservertema3.database.windows.net,1433; Database = database", "mara", "Student20023003");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
     $stmt = $conn->prepare("INSERT INTO details (name, confidence, image_url, detection_time) VALUES (:name, :confidence, :imageUrl, :currentTime)");
 
     echo '<h2>Brand Analysis Results:</h2>';
