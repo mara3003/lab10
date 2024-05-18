@@ -1,121 +1,132 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Brand Analysis</title>
-  <style>
-    body {
-      background-color: #f7f7f7;
-      font-family: Arial, sans-serif;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Analysis</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
 
-    h1 {
-      color: #333;
-      font-size: 36px;
-      margin: 50px 0 30px;
-      text-align: center;
-    }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    form {
-      background-color: #fff;
-      border-radius: 4px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin: 0 auto;
-      max-width: 500px;
-      padding: 30px;
-    }
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
 
-    label {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
+        form {
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
 
-    input[type="text"] {
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-      padding: 10px;
-      width: 100%;
-    }
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-    input[type="submit"] {
-      background-color: #333;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      cursor: pointer;
-      font-size: 18px;
-      padding: 10px 20px;
-      margin-top: 20px;
-    }
+        input[type="file"] {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
 
-    input[type="submit"]:hover {
-      background-color: #555;
-    }
+        input[type="submit"] {
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
 
-    h2 {
-      color: #333;
-      font-size: 24px;
-      margin: 50px 0 30px;
-      text-align: center;
-    }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
 
-    p {
-      color: #333;
-      font-size: 16px;
-      margin: 20px 0;
-      text-align: center;
-    }
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-top: 50px;
+            text-align: center;
+        }
 
-    a {
-      color: #333;
-      font-weight: bold;
-      text-decoration: none;
-    }
+        p {
+            color: #333;
+            font-size: 16px;
+            margin: 20px 0;
+            text-align: center;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+        }
 
-    table {
-      border: 1px black;
-      width: 100%;
-    }
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
 
-    th,
-    td {
-      text-align: left;
-      padding: 8px;
-    }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
 
-    th {
-      background-color: #999;
-      font-weight: bold;
-    }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
+        tr:hover {
+            background-color: #ddd;
+        }
 
-    tr:hover {
-      background-color: #ddd;
-    }
-  </style>
+        a {
+            color: #333;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
-  <h1>Brand Analysis</h1>
-  <form method="POST" enctype="multipart/form-data">
-    <label for="image">Upload an image:</label>
-    <input type="file" name="image-url" id="image-url" accept="image/*" required>
-    <br>
-    <input type="submit" value="Analyze">
-  </form>
-  <br><br>
-<?php
+    <div class="container">
+        <h1>Brand Analysis</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="image-url">Upload an image:</label>
+            <br>
+            <input type="file" name="image-url" id="image-url" accept="image/*" required>
+            <br>
+            <input type="submit" value="Analyze">
+        </form>
+
+        <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -250,6 +261,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "</table>";
 }
   ?>
+    </div>
 </body>
 
 </html>
+
