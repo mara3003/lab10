@@ -219,13 +219,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt->bindParam(':confidence', $confidence);
       $stmt->bindParam(':imageUrl', $newURL);
       $stmt->bindParam(':currentTime', $currentTime);
-    }try {
+    } 
+    try {
         $stmt->execute();
         $aux = 1;
       } catch (PDOException $e) {
         echo "Error executing SQL statement: " . $e->getMessage();
       }
-    }
+    
 
     if ($aux == 0) {
       echo '<p>No Brand Detected.</p>';
