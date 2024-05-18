@@ -7,15 +7,18 @@
     <title>Brand Analysis</title>
     <style>
         body {
-            background-color: #f7f7f7;
+            background-color: #f1e6ff; /* Fundal mov deschis */
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1000px; /* Ajustare pentru a include tabelul în dreapta */
             margin: 0 auto;
+            display: flex; /* Folosim flexbox pentru a poziționa formularul și tabelul */
+            justify-content: space-between; /* Poziționează elementele la margini */
+            align-items: flex-start; /* Aliniere sus */
         }
 
         h1 {
@@ -26,17 +29,20 @@
         }
 
         form {
-            background-color: #fff;
+            background-color: #9c27b0; /* Butonul mov inchis */
             border-radius: 4px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 30px;
             text-align: center;
+            flex: 1; /* Ocupă spațiul disponibil */
+            margin-right: 20px; /* Spațiu între formular și tabel */
         }
 
         label {
             display: block;
             font-size: 18px;
             margin-bottom: 10px;
+            color: #fff; /* Text alb pentru contrast */
         }
 
         input[type="file"] {
@@ -49,7 +55,7 @@
         }
 
         input[type="submit"] {
-            background-color: #333;
+            background-color: #6a1b9a; /* Butonul mov inchis */
             border: none;
             border-radius: 4px;
             color: #fff;
@@ -60,7 +66,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #555;
+            background-color: #4a148c; /* Butonul mov mai inchis la hover */
         }
 
         h2 {
@@ -78,9 +84,10 @@
         }
 
         table {
-            width: 100%;
+            width: 40%; /* Lățimea tabelului */
             border-collapse: collapse;
             margin-top: 50px;
+            background-color: #fff; /* Fundal alb */
         }
 
         th,
@@ -117,8 +124,8 @@
 
 <body>
     <div class="container">
-        <h1>Brand Analysis</h1>
         <form method="POST" enctype="multipart/form-data">
+            <h1>Brand Detection</h1> <!-- Modificare text -->
             <label for="image-url">Upload an image:</label>
             <br>
             <input type="file" name="image-url" id="image-url" accept="image/*" required>
@@ -126,7 +133,7 @@
             <input type="submit" value="Analyze">
         </form>
 
-        <?php
+  <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -261,8 +268,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "</table>";
 }
   ?>
+
+              <div>
+            <h2>Brand Analysis Results:</h2>
+            <table>
+                <!-- Rândurile tabelului -->
+            </table>
+        </div>
     </div>
 </body>
 
 </html>
-
