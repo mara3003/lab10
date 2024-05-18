@@ -206,6 +206,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo '<h2>Brand Analysis Results:</h2>';
     $aux = 0;
+  $imageUrl = $data['url'];
     foreach ($brands as $brand) {
       $name = $brand['name'];
       $confidence = $brand['confidence'];
@@ -214,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "<p>Source: <a href='$imageUrl' target='_blank'>Image</a></p>";
       echo "<br>";
 
-      $imageUrl = $data['url'];
+      
       $currentTime = date('Y-m-d H:i:s', time());
       $stmt->bindParam(':name', $name);
       $stmt->bindParam(':confidence', $confidence);
