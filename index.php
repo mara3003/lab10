@@ -257,6 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     echo "</table>";
   }
+}
   ?>
   </div>
 </body>
