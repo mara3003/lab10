@@ -194,7 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = "Student20023003";
         $database = "database";
 
-        try {
+    }
+  try {
       $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
