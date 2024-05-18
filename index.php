@@ -1,139 +1,121 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brand Analysis</title>
-    <style>
-        body {
-            background-color: #f1e6ff; /* Fundal mov deschis */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
+  <title>Brand Analysis</title>
+  <style>
+    body {
+      background-color: #f1e6ff;
+     font-family: 'Times New Roman', Times, serif;
+      margin: 0;
+    }
 
-        .container {
-            max-width: 1000px; /* Ajustare pentru a include tabelul în dreapta */
-            margin: 0 auto;
-            display: flex; /* Folosim flexbox pentru a poziționa formularul și tabelul */
-            justify-content: space-between; /* Poziționează elementele la margini */
-            align-items: flex-start; /* Aliniere sus */
-        }
+    h1 {
+      color: #333;
+      font-size: 36px;
+      margin: 50px 0 30px;
+      text-align: center;
+    }
 
-        h1 {
-            color: #333;
-            font-size: 36px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
+    form {
+      background-color: #fff;
+      border-radius: 0px;
+      box-shadow: 0 4px 6px rgba(139, 92, 180, 0.5);
+      margin: 0 auto;
+      max-width: 500px;
+      padding: 30px;
+    }
 
-        form {
-            background-color: #9c27b0; /* Butonul mov inchis */
-            border-radius: 4px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            text-align: center;
-            flex: 1; /* Ocupă spațiul disponibil */
-            margin-right: 20px; /* Spațiu între formular și tabel */
-        }
+    label {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
 
-        label {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #fff; /* Text alb pentru contrast */
-        }
+    input[type="text"] {
+      border: 1px solid #ccc;
+      border-radius: 0px;
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+    }
 
-        input[type="file"] {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            padding: 10px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
+    input[type="submit"] {
+      background-color: #333;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 10px 20px;
+      margin-top: 20px;
+    }
 
-        input[type="submit"] {
-            background-color: #6a1b9a; /* Butonul mov inchis */
-            border: none;
-            border-radius: 4px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 18px;
-            padding: 10px 20px;
-            margin-top: 20px;
-        }
+    input[type="submit"]:hover {
+      background-color: #f1e6ff;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #4a148c; /* Butonul mov mai inchis la hover */
-        }
+    h2 {
+      color: #333;
+      font-size: 24px;
+      margin: 50px 0 30px;
+      text-align: center;
+    }
 
-        h2 {
-            color: #333;
-            font-size: 24px;
-            margin-top: 50px;
-            text-align: center;
-        }
+    p {
+      color: #333;
+      font-size: 16px;
+      margin: 20px 0;
+      text-align: center;
+    }
 
-        p {
-            color: #333;
-            font-size: 16px;
-            margin: 20px 0;
-            text-align: center;
-        }
+    a {
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+    }
 
-        table {
-            width: 40%; /* Lățimea tabelului */
-            border-collapse: collapse;
-            margin-top: 50px;
-            background-color: #fff; /* Fundal alb */
-        }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
+    table {
+      border: 1px black;
+      width: 100%;
+    }
 
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
+    th,
+    td {
+      text-align: left;
+      padding: 8px;
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+    th {
+      background-color: #999;
+      font-weight: bold;
+    }
 
-        tr:hover {
-            background-color: #ddd;
-        }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-        a {
-            color: #333;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    tr:hover {
+      background-color: #ddd;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <form method="POST" enctype="multipart/form-data">
-            <h1>Brand Detection</h1> <!-- Modificare text -->
-            <label for="image-url">Upload an image:</label>
-            <br>
-            <input type="file" name="image-url" id="image-url" accept="image/*" required>
-            <br>
-            <input type="submit" value="Analyze">
-        </form>
-
-  <?php
+  <h1>Brand Analysis</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label for="image">Upload an image:</label>
+    <input type="file" name="image-url" id="image-url" accept="image/*" required>
+    <br>
+    <input type="submit" value="Analyze">
+  </form>
+  <br><br>
+<?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -212,19 +194,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = "Student20023003";
         $database = "database";
 
-    }
-  try {
+        try {
       $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
       die("Connection failed: " . $e->getMessage());
     }
 
-    $stmt = $conn->prepare("INSERT INTO details (name, confidence, image_url, detection_time) VALUES (:name, :confidence, :imageUrl, :currentTime)");
+    $stmt = $conn->prepare("INSERT INTO brand_detection (name, confidence, image_url, detection_time) VALUES (:name, :confidence, :imageUrl, :currentTime)");
 
     echo '<h2>Brand Analysis Results:</h2>';
     $aux = 0;
-  $imageUrl = $data['url'];
     foreach ($brands as $brand) {
       $name = $brand['name'];
       $confidence = $brand['confidence'];
@@ -233,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "<p>Source: <a href='$imageUrl' target='_blank'>Image</a></p>";
       echo "<br>";
 
-      
+      $imageUrl = $data['url'];
       $currentTime = date('Y-m-d H:i:s', time());
       $stmt->bindParam(':name', $name);
       $stmt->bindParam(':confidence', $confidence);
@@ -251,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo '<p>No Brand Detected.</p>';
     }
 
-    $query = "SELECT * FROM details";
+    $query = "SELECT * FROM brand_detection";
     $result = $conn->query($query);
 
     echo '<h2>Brand Analysis History:</h2>';
@@ -266,16 +246,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "</tr>";
     }
     echo "</table>";
-}
+  }
   ?>
-
-              <div>
-            <h2>Brand Analysis Results:</h2>
-            <table>
-                <!-- Rândurile tabelului -->
-            </table>
-        </div>
-    </div>
 </body>
 
 </html>
