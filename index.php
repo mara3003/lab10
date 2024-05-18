@@ -213,6 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = $conn->prepare("INSERT INTO details (name, confidence, image_url, detection_time) VALUES (:name, :confidence, :imageUrl, :currentTime)");
 
+        $imageUrl = $data['url'];
     echo '<h2>Brand Analysis Results:</h2>';
     $aux = 0;
     foreach ($brands as $brand) {
@@ -223,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "<p>Source: <a href='$imageUrl' target='_blank'>Image</a></p>";
       echo "<br>";
 
-      $imageUrl = $data['url'];
+    
       $currentTime = date('Y-m-d H:i:s', time());
       $stmt->bindParam(':name', $name);
       $stmt->bindParam(':confidence', $confidence);
