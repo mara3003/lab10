@@ -132,7 +132,7 @@ error_reporting(E_ALL);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['image-url']) && $_FILES['image-url']['error'] == 0) {
-        $sasToken = "sv=2022-11-02&ss=bfqt&srt=s&sp=rwdlacupiytfx&se=2024-05-19T05:13:52Z&st=2024-05-18T21:13:52Z&spr=https,http&sig=zdMdXTP9IfU%2F1RsuY2VG0gPSCcDB2flJjsAF1qVe7Bw%3D";
+        $sasToken = "sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-05-19T05:16:57Z&st=2024-05-18T21:16:57Z&spr=https,http&sig=hOOaKkjkYN%2B%2FuT0Qn1mV5Yz%2BGl0uzM7kZLDDf%2B81H5c%3D";
         $storageAccount = "storagetema3";
         $containerName = "uploads";
         $blobName = $_FILES['image-url']['name'];
