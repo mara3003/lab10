@@ -205,13 +205,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $database = "database";
 
  try {
-    $conn = new PDO("sqlsrv:server = tcp:sqlservertema3.database.windows.net,1433; Database = database", "mara", "Student20023003");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+      $conn = new PDO("sqlsrv:Server=$serverName;Database=$database", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+      die("Connection failed: " . $e->getMessage());
+    }
+
     $stmt = $conn->prepare("INSERT INTO details (name, confidence, image_url, detection_time) VALUES (:name, :confidence, :imageUrl, :currentTime)");
 
     echo '<h2>Brand Analysis Results:</h2>';
@@ -230,14 +229,13 @@ catch (PDOException $e) {
       $stmt->bindParam(':confidence', $confidence);
       $stmt->bindParam(':imageUrl', $newURL);
       $stmt->bindParam(':currentTime', $currentTime);
-    } 
-    try {
+      try {
         $stmt->execute();
         $aux = 1;
       } catch (PDOException $e) {
         echo "Error executing SQL statement: " . $e->getMessage();
       }
-    
+    }
 
     if ($aux == 0) {
       echo '<p>No Brand Detected.</p>';
@@ -258,8 +256,7 @@ catch (PDOException $e) {
       echo "</tr>";
     }
     echo "</table>";
-}
-}
+  }
   ?>
   </div>
 </body>
