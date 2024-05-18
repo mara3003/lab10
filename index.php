@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       die("Connection failed: " . $e->getMessage());
     }
 
-    $stmt = $conn->prepare("INSERT INTO brand_detection (name, confidence, image_url, detection_time) VALUES (:name, :confidence, :imageUrl, :currentTime)");
+    $stmt = $conn->prepare("INSERT INTO details (name, confidence, image_url, detection_time) VALUES (:name, :confidence, :imageUrl, :currentTime)");
 
     echo '<h2>Brand Analysis Results:</h2>';
     $aux = 0;
@@ -232,7 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo '<p>No Brand Detected.</p>';
     }
 
-    $query = "SELECT * FROM brand_detection";
+    $query = "SELECT * FROM details";
     $result = $conn->query($query);
 
     echo '<h2>Brand Analysis History:</h2>';
