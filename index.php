@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -6,25 +5,30 @@
   <title>Brand Analysis</title>
   <style>
     body {
-      background-color: #f1e6ff;
-     font-family: 'Times New Roman', Times, serif;
+      background-color: #f7f0ff;
+      font-family: Arial, sans-serif;
       margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
-      color: #333;
+      color: #6a1b9a;
       font-size: 36px;
-      margin: 50px 0 30px;
+      margin: 0 0 30px;
       text-align: center;
     }
 
     form {
-      background-color: #fff;
-      border-radius: 0px;
-      box-shadow: 0 4px 6px rgba(139, 92, 180, 0.5);
-      margin: 0 auto;
-      max-width: 500px;
-      padding: 30px;
+      text-align: center;
     }
 
     label {
@@ -33,31 +37,33 @@
       margin-bottom: 10px;
     }
 
-    input[type="text"] {
+    input[type="file"] {
       border: 1px solid #ccc;
-      border-radius: 0px;
+      border-radius: 6px;
       font-size: 16px;
       padding: 10px;
       width: 100%;
+      margin-bottom: 20px;
     }
 
     input[type="submit"] {
-      background-color: #333;
+      background-color: #6a1b9a;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       color: #fff;
       cursor: pointer;
       font-size: 18px;
       padding: 10px 20px;
       margin-top: 20px;
+      transition: background-color 0.3s ease;
     }
 
     input[type="submit"]:hover {
-      background-color: #f1e6ff;
+      background-color: #4a148c;
     }
 
     h2 {
-      color: #333;
+      color: #6a1b9a;
       font-size: 24px;
       margin: 50px 0 30px;
       text-align: center;
@@ -71,7 +77,7 @@
     }
 
     a {
-      color: #333;
+      color: #6a1b9a;
       font-weight: bold;
       text-decoration: none;
     }
@@ -81,18 +87,20 @@
     }
 
     table {
-      border: 1px black;
       width: 100%;
+      border-collapse: collapse;
+      margin-top: 50px;
     }
 
     th,
     td {
-      text-align: left;
+      border: 1px solid #ddd;
       padding: 8px;
+      text-align: left;
     }
 
     th {
-      background-color: #999;
+      background-color: #f2f2f2;
       font-weight: bold;
     }
 
@@ -107,15 +115,17 @@
 </head>
 
 <body>
-  <h1>Brand Analysis</h1>
-  <form method="POST" enctype="multipart/form-data">
-    <label for="image">Upload an image:</label>
-    <input type="file" name="image-url" id="image-url" accept="image/*" required>
-    <br>
-    <input type="submit" value="Analyze">
-  </form>
-  <br><br>
-<?php
+  <div class="container">
+    <h1>Brand Analysis</h1>
+    <form method="POST" enctype="multipart/form-data">
+      <label for="image">Upload an image:</label>
+      <br>
+      <input type="file" name="image-url" id="image-url" accept="image/*" required>
+      <br>
+      <input type="submit" value="Analyze">
+    </form>
+    <br><br>
+    <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -249,6 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "</table>";
 }
   ?>
+  </div>
 </body>
 
 </html>
